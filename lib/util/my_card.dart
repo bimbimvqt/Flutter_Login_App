@@ -3,18 +3,24 @@
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
-  final double balance;
-  final int cardNumber;
-  final int expiryMonth;
-  final int expiryYear;
+  final String avatar;
+  final String name;
   final color;
+  final String songName1;
+  final String songName2;
+  final String songName3;
+  final String songName4;
+  final String songName5;
 
   const MyCard(
-      {required this.balance,
-      required this.cardNumber,
-      required this.expiryMonth,
-      required this.expiryYear,
+      {required this.avatar,
+      required this.name,
       required this.color,
+      required this.songName1,
+      required this.songName2,
+      required this.songName3,
+      required this.songName4,
+      required this.songName5,
       super.key});
 
   @override
@@ -35,46 +41,90 @@ class MyCard extends StatelessWidget {
             // ignore: prefer_const_constructors
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text(
-                  'Balance',
+                  'Most Listening',
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 24,
                   ),
                 ),
-                Image.asset(
-                  'lib/icons/visa.png',
-                  height: 50,
-                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.white,
+                )
               ],
             ),
+
             SizedBox(height: 10),
-            Text(
-              '\$1' + balance.toString(),
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 36,
-              ),
-            ),
-            SizedBox(height: 30),
+
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // card number
-                Text(
-                  cardNumber.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage(avatar),
+                      radius: 55,
+                    ),
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
                 ),
-                // card expiry date
-                Text(
-                  expiryMonth.toString() + '/' + expiryYear.toString(),
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
+                Column(
+                  children: [
+                    Text(
+                      'List Songs',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      songName1,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Text(
+                      songName2,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Text(
+                      songName3,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Text(
+                      songName4,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Text(
+                      songName5,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Text(
+                      '...',
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ],
+                )
               ],
             )
           ],

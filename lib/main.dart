@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:first_app/login_page.dart';
-import 'package:first_app/main_page.dart';
+import 'package:first_app/pages/home_page.dart';
+import 'package:first_app/pages/login_page.dart';
+import 'package:first_app/auth/main_page.dart';
+import 'package:first_app/pages/playList_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -19,6 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MainPage(),
+      initialRoute: '',
+      routes: <String, WidgetBuilder>{
+        '': (context) => HomePage(),
+        '/send': (context) => SendPage(),
+      },
     );
   }
 }

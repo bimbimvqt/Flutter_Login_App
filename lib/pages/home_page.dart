@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_app/util/my_button.dart';
 import 'package:first_app/util/my_card.dart';
 import 'package:first_app/util/my_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final user = FirebaseAuth.instance.currentUser!;
+
 // pageController
   final _controller = PageController();
 
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {},
           backgroundColor: Colors.pink[300],
           child: Icon(
-            Icons.monetization_on,
+            Icons.play_arrow,
             size: 32,
           ),
         ),
@@ -50,9 +51,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  },
                   icon: Icon(
-                    Icons.settings,
+                    Icons.logout,
                     size: 38,
                     color: Colors.pink,
                   ),
@@ -75,17 +78,12 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Row(
                           children: [
+                            Icon(Icons.music_note),
                             Text(
-                              'My',
+                              'SoundClone',
                               style: TextStyle(
-                                fontSize: 28,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              ' Cards',
-                              style: TextStyle(
-                                fontSize: 28,
                               ),
                             ),
                           ],
@@ -93,12 +91,12 @@ class _HomePageState extends State<HomePage> {
 
                         // plus button
                         Container(
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[400],
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(Icons.add),
+                          // padding: EdgeInsets.all(6),
+                          // decoration: BoxDecoration(
+                          //   color: Colors.grey[400],
+                          //   shape: BoxShape.circle,
+                          // ),
+                          child: Text(user.email!),
                         )
                       ],
                     ),
@@ -113,25 +111,34 @@ class _HomePageState extends State<HomePage> {
                       scrollDirection: Axis.horizontal,
                       children: [
                         MyCard(
-                          balance: 525.20,
-                          cardNumber: 12321331,
-                          expiryMonth: 10,
-                          expiryYear: 24,
+                          avatar: 'lib/images/hieuthuhai.jpeg',
+                          name: 'Hieu Thu Hai',
                           color: Colors.deepPurple[400],
+                          songName1: 'Khu vực mát em',
+                          songName2: 'năm 3 chơi rap',
+                          songName3: 'REX - 5050',
+                          songName4: 'Bài thứ 4',
+                          songName5: 'Bài thứ 5',
                         ),
                         MyCard(
-                          balance: 125.20,
-                          cardNumber: 12321331,
-                          expiryMonth: 5,
-                          expiryYear: 21,
+                          avatar: 'lib/images/denvau.jpeg',
+                          name: 'Đen Vâu',
                           color: Colors.blue[400],
+                          songName1: 'Đưa nhau đi trốn',
+                          songName2: 'Đi về nhà',
+                          songName3: 'Bài này chill phết',
+                          songName4: 'Lối nhỏ',
+                          songName5: 'Một triệu like',
                         ),
                         MyCard(
-                          balance: 825.20,
-                          cardNumber: 12321331,
-                          expiryMonth: 11,
-                          expiryYear: 25,
+                          avatar: 'lib/images/sontung.png',
+                          name: 'Sơn Tùng MTP',
                           color: Colors.pink[400],
+                          songName1: 'Chạy ngay đi',
+                          songName2: 'Hãy trao cho anh',
+                          songName3: 'Muộn rồi mà sao còn',
+                          songName4: 'Nơi này có anh',
+                          songName5: 'Chúng ta của hiên tại',
                         ),
                       ],
                     ),
@@ -153,15 +160,25 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // send button
+
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/send');
+                          },
+                          child: MyButton(
+                            buttonText: 'Playlist',
+                            iconImagePath: 'lib/icons/playlist.png',
+                          ),
+                        ),
+
                         MyButton(
-                            buttonText: 'Send',
-                            iconImagePath: 'lib/icons/send-money.png'),
+                          buttonText: 'Favorite',
+                          iconImagePath: 'lib/icons/favorite.png',
+                        ),
                         MyButton(
-                            buttonText: 'Pay',
-                            iconImagePath: 'lib/icons/pay.png'),
-                        MyButton(
-                            buttonText: 'Bills',
-                            iconImagePath: 'lib/icons/bills.png'),
+                          buttonText: 'Albums',
+                          iconImagePath: 'lib/icons/albums.png',
+                        ),
                         // pay button
 
                         // bill button
@@ -176,15 +193,22 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         // statistics
                         MyListTile(
-                            iconImagePath: 'lib/icons/statistics.png',
-                            tileSubTitle: 'Payment and Income',
-                            tileTitle: 'Statistics'),
+                          iconImagePath: 'lib/icons/statistics.png',
+                          tileSubTitle: 'The most played on this week',
+                          tileTitle: 'Chart: Top 50',
+                        ),
 
                         // transaction
                         MyListTile(
-                            iconImagePath: 'lib/icons/transaction.png',
-                            tileSubTitle: 'Transaction History',
-                            tileTitle: 'Transaction'),
+                          iconImagePath: 'lib/icons/chill.png',
+                          tileSubTitle: 'Chill & Relax music',
+                          tileTitle: 'Chill',
+                        ),
+                        MyListTile(
+                          iconImagePath: 'lib/icons/remix.png',
+                          tileSubTitle: 'Remix music',
+                          tileTitle: 'Remix - EDM',
+                        ),
                       ],
                     ),
                   ),

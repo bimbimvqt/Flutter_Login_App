@@ -27,7 +27,7 @@ class MyListTile extends StatelessWidget {
                 padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                     color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(50)),
                 child: Image.asset(iconImagePath),
               ),
               SizedBox(width: 20),
@@ -45,7 +45,7 @@ class MyListTile extends StatelessWidget {
                   Text(
                     tileSubTitle,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.grey[600],
                     ),
                   ),
