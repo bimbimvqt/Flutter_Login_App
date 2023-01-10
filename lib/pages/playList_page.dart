@@ -5,8 +5,8 @@ import 'package:first_app/util/neu_box.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class SendPage extends StatelessWidget {
-  const SendPage({super.key});
+class PlayList extends StatelessWidget {
+  const PlayList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SendPage extends StatelessWidget {
           onPressed: () {},
           backgroundColor: Colors.pink[300],
           child: Icon(
-            Icons.monetization_on,
+            Icons.play_arrow,
             size: 32,
           ),
         ),

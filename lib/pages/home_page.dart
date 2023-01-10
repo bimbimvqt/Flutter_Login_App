@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[300],
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/albums');
+          },
           backgroundColor: Colors.pink[300],
           child: Icon(
             Icons.play_arrow,
@@ -159,11 +161,11 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // send button
+                        // playlist button
 
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, '/send');
+                            Navigator.pushNamed(context, '/playlist');
                           },
                           child: MyButton(
                             buttonText: 'Playlist',
@@ -175,9 +177,14 @@ class _HomePageState extends State<HomePage> {
                           buttonText: 'Favorite',
                           iconImagePath: 'lib/icons/favorite.png',
                         ),
-                        MyButton(
-                          buttonText: 'Albums',
-                          iconImagePath: 'lib/icons/albums.png',
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/albums');
+                          },
+                          child: MyButton(
+                            buttonText: 'Albums',
+                            iconImagePath: 'lib/icons/albums.png',
+                          ),
                         ),
                         // pay button
 
